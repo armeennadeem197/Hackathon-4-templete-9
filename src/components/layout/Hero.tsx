@@ -1,0 +1,54 @@
+"use client";
+import Image from "next/image";
+import React from "react";
+import { FaFacebookF } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import heroimg from "../../../public/heroimgg.png";
+import { FaPinterestP } from "react-icons/fa6";
+
+const Hero = () => {
+  return (
+    <div className="lg:flex lg:gap-[100px] lg:px-[100px] px-6 lg:pt-[101px] pt-[50px]">
+      {/* Left Side Social Media */}
+      <div className="lg:flex flex-col lg:gap-[100px] gap-4 lg:w-[25.28px] lg:h-[492px] md:hidden sm:hidden hidden">
+        <div className="lg:w-[108px] border-[1px] rotate-90 text-yellow-600 lg:block hidden"></div>
+        <div className="lg:ml-[45px] flex-col justify-between flex gap-[20px]">
+          <a href="https://www.facebook.com/maarij.khan.161">
+            <FaFacebookF className="text-white" />
+          </a>
+          <FaTwitter className="text-yellow-600" />
+          <FaPinterestP className="text-white" />
+        </div>
+        <div className="w-[108px] border-[1px] lg:block hidden rotate-90 text-yellow-600"></div>
+      </div>
+
+      {/* Main Content */}
+      <div className="lg:w-[472px] w-[300px] lg:h-[356px] rounded-[30px] flex flex-col lg:gap-[20px] gap-[25px]">
+        <h1 className="text-yellow-600 font-greatVibes lg:text-[32px] text-[30px] leading-[40px] font-medium">
+          Its Quick & Amusing!
+        </h1>
+        <h1 className="font-helvetica font-bold lg:text-[50px] text-[35px] lg:leading-[68px] text-white">
+          <span className="text-yellow-600">Th</span>e Art of Speed Food Quality
+        </h1>
+        <p className="font-normal text-[16px] leading-6 text-white lg:w-[380px] h-[48px]">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
+          reiciendis esse autem deserun
+        </p>
+        <button className="lg:w-[150px] w-[100px] h-[30px] lg:h-[50px] rounded-[30px] bg-yellow-600 text-white">
+          See Menu
+        </button>
+      </div>
+
+      {/* Hero Image */}
+      <div>
+        <Image
+          src={heroimg}
+          alt=""
+          className="w-[200px] h-auto lg:w-[600px] lg:h-[425px] object-cover rounded-[20px] lg:rounded-[30px]"
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
