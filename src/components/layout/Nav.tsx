@@ -6,6 +6,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import foodlogo from "../../../public/Foodtuck.png";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from 'next/link';
+import { Star } from "lucide-react";
+import CartComponent from "@/components//layout/CartComponent"; // Import the CartComponent
+
 
 const Nav = () => {
   return (
@@ -20,7 +23,7 @@ const Nav = () => {
           <Link href={"/blog"}><li className='w-[45px] h-[24px] font-medium leading-[24px] hover:text-yellow-600'>Blog</li></Link>
           <Link href={"/ourchef"}><li className='w-[45px] h-[24px] font-medium leading-[24px] hover:text-yellow-600'>Chef</li></Link>
           <Link href={"/aboutus"}><li className='w-[45px] h-[24px] font-medium leading-[24px] hover:text-yellow-600'>About</li> </Link>
-          <Link href={"/shop"}><li className='w-[45px] h-[24px] font-medium leading-[24px] hover:text--yellow-600'>Shop</li></Link>
+          <Link href={"/Newest"}><li className='w-[45px] h-[24px] font-medium leading-[24px] hover:text--yellow-600'>Shop</li></Link>
           <Link href={"/signin"}><li className='w-[45px] h-[24px] font-medium leading-[24px] hover:text-yellow-600'>Signin</li></Link>
         </ul>
         <div className="flex items-center gap-[15px]">
@@ -32,10 +35,8 @@ const Nav = () => {
             />
             <IoSearch className="text-white w-[20px] h-[20px]" />
           </div>
-
-          {/* Shopping Bag */}
-          <Link href={"/shoppingcart"}><HiOutlineShoppingBag className="text-white text-[24px] cursor-pointer" /></Link>
-        </div>
+            <CartComponent /> {/* Use the CartComponent here */}
+            </div>
       </div>
 
       {/* Mobile Navigation */}

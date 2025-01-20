@@ -8,6 +8,7 @@ import { IoSearch } from "react-icons/io5";
 import { PiUserBold } from "react-icons/pi";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import CartComponent from "@/components/layout/CartComponent";
 export default function SignInPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -28,7 +29,7 @@ export default function SignInPage() {
           <div className="flex gap-4 ">
           <h1><IoSearch className="text-whitetext text-[24px] cursor-pointer" /></h1>
           <h1><Link href={"/signup"}><PiUserBold className="text-whitetext text-[24px] cursor-pointer" /></Link></h1>
-          <h1><Link href={"/shoppingcart"}><HiOutlineShoppingBag className="text-whitetext text-[24px] cursor-pointer" /></Link> </h1>
+          <CartComponent/>
           </div>
          <div className="lg:hidden block">
          <Sheet>

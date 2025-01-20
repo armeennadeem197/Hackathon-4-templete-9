@@ -17,6 +17,7 @@ import { PiQuotesLight } from "react-icons/pi";
 import { GoDotFill } from "react-icons/go";
 import { MdStar } from "react-icons/md";
 import client from "../../../public/client.png";
+import CartComponent from "@/components/layout/CartComponent";
 
 const ourdata = [
   {
@@ -90,14 +91,14 @@ export default function About() {
         <li><Link href="/blog">Blog</Link></li>
         <li><Link href="/ourchef">Chef</Link></li>
         <li><Link href="/aboutus">About</Link></li>
-        <li><Link href="/shop">Shop</Link></li>
+        <li><Link href="/Newest">Shop</Link></li>
         <li><Link href="/signin">Signin</Link></li>
         </ul>
       </nav>
       <div className="flex gap-4 ">
       <h1><IoSearch className="text-whitetext text-[24px] cursor-pointer" /></h1>
       <h1><Link href={"/signup"}><PiUserBold className="text-whitetext text-[24px] cursor-pointer" /></Link></h1>
-      <h1><Link href={"/shoppingcart"}><HiOutlineShoppingBag className="text-whitetext text-[24px] cursor-pointer" /></Link> </h1>
+     <CartComponent/>
       </div>
      <div className="lg:hidden block">
      <Sheet>
@@ -111,7 +112,7 @@ export default function About() {
         <li><Link href="/blog">Blog</Link></li>
         <li><Link href="/ourchef">Chef</Link></li>
         <li><Link href="/aboutus">About</Link></li>
-        <li><Link href="/shop">Shop</Link></li>
+        <li><Link href="/Newest">shop</Link></li>
         <li><Link href="/signin">Signin</Link></li>
         </ul>
       </SheetContent>

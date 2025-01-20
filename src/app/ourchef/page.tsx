@@ -7,6 +7,7 @@ import { PiUserBold } from 'react-icons/pi';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { client } from '@/sanity/lib/client';
+import CartComponent from '@/components/layout/CartComponent';
 
 type Chef = {
   _id: string;
@@ -45,14 +46,14 @@ export default async function Newest() {
               <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/ourchef">Chef</Link></li>
               <li><Link href="/aboutus">About</Link></li>
-              <li><Link href="/shop">Shop</Link></li>
-              <li><Link href="/signin">Signin</Link></li>
+              <li><Link href="/Newest">Shop</Link></li>
+              <li><Link href="/sigin">Signin</Link></li>
             </ul>
           </nav>
           <div className="flex gap-4">
             <h1><IoSearch className="text-white text-[24px] cursor-pointer" /></h1>
             <h1><Link href="/signup"><PiUserBold className="text-white text-[24px] cursor-pointer" /></Link></h1>
-            <h1><Link href="/shoppingcart"><HiOutlineShoppingBag className="text-white text-[24px] cursor-pointer" /></Link></h1>
+           <CartComponent/>
           </div>
           <div className="lg:hidden block">
             <Sheet>
@@ -66,7 +67,7 @@ export default async function Newest() {
                   <li><Link href="/blog">Blog</Link></li>
                   <li><Link href="/ourchef">Chef</Link></li>
                   <li><Link href="/aboutus">About</Link></li>
-                  <li><Link href="/shop">Shop</Link></li>
+                  <li><Link href="/Newest">Shop</Link></li>
                   <li><Link href="/signin">Signin</Link></li>
                 </ul>
               </SheetContent>

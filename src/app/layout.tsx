@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
-
-
+import CartProvider from "@/components/layout/Provider";
+import ShoppingCartModal from "@/components/layout/shoppingCartMoal"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,8 +28,11 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <CartProvider>
+          <ShoppingCartModal/>
           {children}
           <Footer />
+          </CartProvider>
         </body>
       </html>
   );

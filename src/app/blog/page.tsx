@@ -14,6 +14,7 @@ import { IoLogoGithub } from "react-icons/io";
 import { FaInstagram ,FaFacebook  ,FaLinkedin  } from "react-icons/fa6";
 import { BsCalendarMonth } from "react-icons/bs";
 import Link from 'next/link';
+import CartComponent from '@/components/layout/CartComponent';
 import { datablog } from '../../../Data/data';
 const page = () => {
   return (
@@ -28,15 +29,15 @@ const page = () => {
             <li><Link href="/blog">Blog</Link></li>
             <li><Link href="/ourchef">Chef</Link></li>
             <li><Link href="/aboutus">About</Link></li>
-            <li><Link href="/shop">Shop</Link></li>
+            <li><Link href="/Newest">Shop</Link></li>
             <li><Link href="/signin">Signin</Link></li>
             </ul>
           </nav>
           <div className="flex gap-4 ">
           <h1><IoSearch className="text-whitetext text-[24px] cursor-pointer" /></h1>
           <h1><Link href={"/signup"}><PiUserBold className="text-whitetext text-[24px] cursor-pointer" /></Link></h1>
-          <h1><Link href={"/shoppingcart"}><HiOutlineShoppingBag className="text-whitetext text-[24px] cursor-pointer" /></Link> </h1>
-          </div>
+         <CartComponent/>
+            </div>
          <div className="lg:hidden block">
          <Sheet>
           <SheetTrigger>
@@ -49,7 +50,7 @@ const page = () => {
             <li><Link href="/blog">Blog</Link></li>
             <li><Link href="/ourchef">Chef</Link></li>
             <li><Link href="/aboutus">About</Link></li>
-            <li><Link href="/shop">Shop</Link></li>
+            <li><Link href="/Newest">Shop</Link></li>
             <li><Link href="/signin">Signin</Link></li>
             </ul>
           </SheetContent>
