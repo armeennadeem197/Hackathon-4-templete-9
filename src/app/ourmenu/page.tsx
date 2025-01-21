@@ -25,10 +25,8 @@ async function getData() {
   const query = `*[_type == "food"] {
     _id,
     name,
-    categoryName,
     price,
     description,
-    slug,
     image {
       asset -> {
         url
@@ -48,7 +46,7 @@ export default async function Newest() {
     <div>
       <header className="bg-black text-white">
         <div className="container mx-auto flex justify-between items-center py-4 px-6">
-          <h1 className="text-2xl font-bold text-yellow-500">FoodTuck</h1>
+          <h1 className="text-xl font-bold text-yellow-500">FoodTuck</h1>
           <nav className="lg:block hidden">
             <ul className="flex space-x-6">
               <li><Link href="/">Home</Link></li>
@@ -56,14 +54,14 @@ export default async function Newest() {
               <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/ourchef">Chef</Link></li>
               <li><Link href="/aboutus">About</Link></li>
-              <li><Link href="/shop">Shop</Link></li>
+              <li><Link href="/Newest">Shop</Link></li>
               <li><Link href="/signin">Signin</Link></li>
             </ul>
           </nav>
           <div className="flex gap-4">
-            <h1><IoSearch className="text-white text-[24px] cursor-pointer" /></h1>
-            <h1><Link href="/signup"><PiUserBold className="text-white text-[24px] cursor-pointer" /></Link></h1>
-           <CartComponent/>
+            <h1><IoSearch className="text-white text-[20px] cursor-pointer" /></h1>
+            <h1><Link href="/signup"><PiUserBold className="text-white text-[20px] cursor-pointer" /></Link></h1>
+            <CartComponent />
           </div>
           <div className="lg:hidden block">
             <Sheet>
@@ -71,7 +69,7 @@ export default async function Newest() {
                 <GiHamburgerMenu className="text-white text-[24px] cursor-pointer" />
               </SheetTrigger>
               <SheetContent>
-                <ul className="flex flex-col gap-[10px] font-medium text-[16px] text-black">
+                <ul className="flex flex-col gap-2 font-medium text-[16px] text-black">
                   <li><Link href="/">Home</Link></li>
                   <li><Link href="/ourmenu">Menu</Link></li>
                   <li><Link href="/blog">Blog</Link></li>
@@ -98,31 +96,24 @@ export default async function Newest() {
       </section>
 
       <div className="bg-white">
-        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {data.map((product) => (
-              <div key={product._id} className="group relative">
-                <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-4 gap-y-6 justify-center">
+            {data.map((product, index) => (
+              <div key={product._id} className="group relative text-center">
+                <div className="aspect-square w-full max-w-xs mx-auto overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75">
                   <Image
                     src={product.image.asset.url} // Ensure correct image URL
                     alt="Product image"
-                    className="w-full h-full object-cover object-center lg:h-full lg:w-full"
-                    width={300}
-                    height={300}
+                    className="w-full h-full object-cover object-center"
+                    width={150}  // Reduced the width
+                    height={150} // Reduced the height
                   />
                 </div>
 
-                <div className="mt-4 flex justify-between">
-                  <div>
-                    <h3 className="text-sm text-gray-700">
-                      <Link href={`/product/${product.slug}`}>
-                        {product.name}
-                      </Link>
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">
-                      {product.categoryName}
-                    </p>
-                  </div>
+                <div className="mt-4 flex justify-center items-center flex-col">
+                  <p className="mt-1 text-sm text-gray-500">
+                    {product.name}
+                  </p>
                   <p className="text-sm font-medium text-gray-900">
                     ${product.price}
                   </p>

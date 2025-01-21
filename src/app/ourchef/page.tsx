@@ -91,29 +91,28 @@ export default async function Newest() {
       {data.length === 0 ? (
         <p className="text-center text-lg">No chefs available.</p>
       ) : (
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8 mx-auto max-w-screen-lg">
           {data.map((chef) => (
-            <div key={chef._id} className="group relative">
-              <div className="p-4 w-full max-w-sm">
-                <a className="block relative h-48 rounded overflow-hidden">
+            <div key={chef._id} className="group relative text-center">
+              <div className="p-4 w-full max-w-md mx-auto"> {/* Increased width of the box */}
+                <a className="block relative h-64 rounded overflow-hidden"> {/* Increased height */}
                   <Image
                     src={chef.imageUrl}
                     alt={`${chef.name} image`}
                     className="object-cover object-center w-full h-full block"
-                    width={200} height={200}
+                    width={200} // Larger image size
+                    height={200} // Larger image size
                   />
                 </a>
-                <div className="mt-4 flex justify-between">
-                  <div>
-                    <h3 className="text-sm text-gray-700">
-                      <Link href={`/chef/${chef._id}`}>
-                        {chef.name}
-                      </Link>
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">
-                      {chef.position}
-                    </p>
-                  </div>
+                <div className="mt-4 flex justify-center flex-col items-center">
+                  <h3 className="text-sm text-gray-700">
+                    <Link href={`/chef/${chef._id}`} className="hover:text-yellow-400">
+                      {chef.name}
+                    </Link>
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">
+                    {chef.position}
+                  </p>
                 </div>
               </div>
             </div>

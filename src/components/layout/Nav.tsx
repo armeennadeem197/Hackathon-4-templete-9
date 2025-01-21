@@ -6,7 +6,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import foodlogo from "../../../public/Foodtuck.png";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from 'next/link';
-import { Star } from "lucide-react";
 import CartComponent from "@/components//layout/CartComponent"; // Import the CartComponent
 
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import CartProvider from "@/components/layout/Provider";
-import ShoppingCartModal from "@/components/layout/shoppingCartMoal"
+import ShoppingCartModal from "@/components/layout/shoppingCartModal"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
