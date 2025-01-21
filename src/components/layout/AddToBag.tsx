@@ -21,10 +21,7 @@ export default function AddToBag({
   price_id,
 }: ProductCart) {
   const { addItem, handleCartClick } = useShoppingCart();
-
-  // Ensure image is valid and passed correctly
   const imageUrl = image?.asset ? urlFor(image).url() : "";
-
   const product = {
     name: name,
     description: description,

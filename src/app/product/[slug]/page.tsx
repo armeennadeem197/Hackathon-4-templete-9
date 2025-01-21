@@ -1,4 +1,3 @@
-import ImageGallery from "@/components/layout/ImageGallery";
 import { fullProduct } from "@/app/interface";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
@@ -10,9 +9,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import AddToBag from "@/components/layout/AddToBag";
 import { Star } from "lucide-react";
 import CartComponent from "@/components//layout/CartComponent"; // Import the CartComponent
+import ImageGallery from "@/components/layout/ImageGallery"; // Import the ImageGallery component
 
 async function getData(slug: string) {
-  const query = `*[_type == "shop" && slug.current < "${slug}"] [0]{
+  const query = `*[_type == "foodProduct" && slug.current < "${slug}"] [0]{
     _id,
     name,
     images,
@@ -143,7 +143,7 @@ export default async function ProductPage({
                   ))}
                 </div>
                 <span className="text-sm text-gray-500 transition duration-100">
-                  {data.totalRatings || "5.0"} Ratings || 22 Reviews
+                  5.0 Ratings || 22 Reviews
                 </span>
                 <span className="text-sm text-gray-500">Dictum/cursus/Dictum</span>
               </div>

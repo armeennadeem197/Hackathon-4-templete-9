@@ -1,3 +1,59 @@
+// import Link from "next/link";
+// import type { fullProduct } from "@/app/interface";
+// import Header from "@/components/layout/Header";
+// import { client } from "@/sanity/lib/client";
+// import ProductGrid from "@/components/layout/ProductGrid"; // Renamed for clarity.
+
+// async function getData() {
+//   const query = `*[_type == "foodProduct"] | order(createdAt desc)[0...12]{
+//     _id,
+//     name,
+//     slug,
+//     category,
+//     price,
+//     description,
+//     createdAt,
+//     "images": images[].asset->url,
+//     "slug": slug.current
+//   }`;
+
+//   const data: fullProduct[] = await client.fetch(query);
+//   return data;
+// }
+
+// export default async function Newest() {
+//   const data: fullProduct[] = await getData();
+
+//   return (
+//     <div>
+//       {/* Header */}
+//       <Header />
+
+//       {/* Banner Section */}
+//       <section
+//         className="bg-cover bg-center h-64 flex items-center justify-center"
+//         style={{ backgroundImage: "url('/allnav.png')" }}
+//       >
+//         <div className="text-center text-white">
+//           <h2 className="text-4xl font-bold">Newest Products</h2>
+//           <p className="pt-2">
+//             <Link href="/" className="text-yellow-400">
+//               Home
+//             </Link>{" "}
+//             › Newest
+//           </p>
+//         </div>
+//       </section>
+
+//       {/* Main Content */}
+//       <main className="container mx-auto px-4 py-8">
+//         <h2 className="text-3xl font-bold text-center mb-8">Our Latest Offerings</h2>
+//         {/* Product Grid */}
+//         <ProductGrid products={data} />
+//       </main>
+//     </div>
+//   );
+// }
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
@@ -10,7 +66,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import CartComponent from "@/components/layout/CartComponent";
 
 async function getData() {
-  const query = `*[_type == "shop"]{
+  const query = `*[_type == "foodProduct"]{
     _id,
     price,
     name,
@@ -27,45 +83,29 @@ export default async function Newest() {
 
   return (
     <div>
+      {/* Header */}
       <header className="bg-black text-white">
         <div className="container mx-auto flex justify-between items-center py-4 px-6">
           <h1 className="text-2xl font-bold text-yellow-500">FoodTuck</h1>
           <nav className="lg:block hidden">
             <ul className="flex space-x-6">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/ourmenu">Menu</Link>
-              </li>
-              <li>
-                <Link href="/blog">Blog</Link>
-              </li>
-              <li>
-                <Link href="/ourchef">Chef</Link>
-              </li>
-              <li>
-                <Link href="/aboutus">About</Link>
-              </li>
-              <li>
-                <Link href="/Newest">Shop</Link>
-              </li>
-              <li>
-                <Link href="/signin">Signin</Link>
-              </li>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/ourmenu">Menu</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
+              <li><Link href="/ourchef">Chef</Link></li>
+              <li><Link href="/aboutus">About</Link></li>
+              <li><Link href="/Newest">Shop</Link></li>
+              <li><Link href="/signin">Signin</Link></li>
             </ul>
           </nav>
           <div className="flex gap-4">
-            <h1>
-              <IoSearch className="text-white text-[24px] cursor-pointer" />
-            </h1>
-            <h1>
-              <Link href={"/signup"}>
-                <PiUserBold className="text-white text-[24px] cursor-pointer" />
-              </Link>
-            </h1>
+            <IoSearch className="text-white text-[24px] cursor-pointer" />
+            <Link href="/signup">
+              <PiUserBold className="text-white text-[24px] cursor-pointer" />
+            </Link>
             <CartComponent />
           </div>
+          {/* Mobile Menu */}
           <div className="lg:hidden block">
             <Sheet>
               <SheetTrigger>
@@ -73,27 +113,13 @@ export default async function Newest() {
               </SheetTrigger>
               <SheetContent>
                 <ul className="flex flex-col gap-[10px] font-medium text-[16px] text-black">
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link href="/ourmenu">Menu</Link>
-                  </li>
-                  <li>
-                    <Link href="/blog">Blog</Link>
-                  </li>
-                  <li>
-                    <Link href="/ourchef">Chef</Link>
-                  </li>
-                  <li>
-                    <Link href="/aboutus">About</Link>
-                  </li>
-                  <li>
-                    <Link href="/Newest">Shop</Link>
-                  </li>
-                  <li>
-                    <Link href="/signin">Signin</Link>
-                  </li>
+                  <li><Link href="/">Home</Link></li>
+                  <li><Link href="/ourmenu">Menu</Link></li>
+                  <li><Link href="/blog">Blog</Link></li>
+                  <li><Link href="/ourchef">Chef</Link></li>
+                  <li><Link href="/aboutus">About</Link></li>
+                  <li><Link href="/Newest">Shop</Link></li>
+                  <li><Link href="/signin">Signin</Link></li>
                 </ul>
               </SheetContent>
             </Sheet>
@@ -101,6 +127,7 @@ export default async function Newest() {
         </div>
       </header>
 
+      {/* Banner Section */}
       <section
         className="bg-cover bg-center h-64 flex items-center justify-center"
         style={{ backgroundImage: "url('/allnav.png')" }}
@@ -108,13 +135,12 @@ export default async function Newest() {
         <div className="text-center text-white">
           <h2 className="text-4xl font-bold">Our Shop</h2>
           <p className="pt-[10px]">
-            <Link href="/" className="text-yellow-400">
-              Home
-            </Link>{" "}
-            › Shop
+            <Link href="/" className="text-yellow-400">Home</Link> › Shop
           </p>
         </div>
       </section>
+
+      {/* Product Grid Section */}
       <div id="products" className="w-full flex justify-center items-center mt-10 mb-1">
         <div className="w-[90%] md:w-[80%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {data.map((product) => (
@@ -123,16 +149,16 @@ export default async function Newest() {
                 <Image
                   alt="Product Image"
                   className="object-cover object-center block"
-                  src={product.imageUrl || "/fallback-image.jpg"} 
-                  width={300}  
-                  height={300} 
+                  src={product.imageUrl || "/fallback-image.jpg"}
+                  width={300}
+                  height={300}
                 />
               </div>
 
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    <Link href={`/shop/${product.slug}`}>{product.name}</Link>
+                    <Link href={`/product/${product.slug}`}>{product.name}</Link>
                   </h3>
                   <p className="text-sm text-gray-500">Category</p> {/* Adjust as needed */}
                 </div>

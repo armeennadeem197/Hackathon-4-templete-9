@@ -6,32 +6,27 @@ export interface simplifiedProduct {
   categoryName: string;
   name: string;
 }
-
 export interface fullProduct {
-  _id: string;
-  images: any;
-  price: number;
-  slug: string;
-  categoryName: string;
-  name: string;
-  description: string;
   price_id: string;
-}
-  
-export interface fullProduct {
-
-  _id: string;
-
-  price: number;
-
-  name: string;
-
-  slug: string;
-
-  imageUrl: string;
-  rating: number;
-
-  totalRatings: number;
+  _id: string
+  name: string
+  slug: string
+  category: string
+  price: number
+  description: string
+  images: string[]
+  stockStatus: string;
+  products: fullProduct[];
+  createdAt: string;
+  rating?: number; 
+  imageUrl: string; 
 
 }
-  
+
+type ProductGridProps = {
+  imageUrl: string; // Added imageUrl property
+
+  images: string[];
+
+};
+

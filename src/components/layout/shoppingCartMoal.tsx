@@ -16,7 +16,7 @@ export default function ShoppingCartModel() {
     handleCartClick,
     cartDetails,
     removeItem,
-    totalPrice = 0,
+    totalPrice = 0, // Ensure totalPrice has a fallback value of 0
     redirectToCheckout,
   } = useShoppingCart();
 
@@ -42,7 +42,9 @@ export default function ShoppingCartModel() {
           <div className="mt-8 flex-1 overflow-y-auto">
             <ul className="-my-6 divide-y divide-gray-200">
               {cartCount === 0 ? (
-                <p>Your cart is empty</p>
+                <p className="text-center text-xl font-semibold mt-4">
+                  Your cart is empty
+                </p>
               ) : (
                 <>
                   {Object.values(cartDetails ?? {}).map((entry: any) => (
@@ -87,27 +89,28 @@ export default function ShoppingCartModel() {
               )}
             </ul>
           </div>
-          <div className="border border-gray-200 px-4 py-4 sm:px-6">
-            <div className="flex justify-between text-base font-medium">
-              <p>Subtotal:</p>
-              <p>${totalPrice.toFixed(2)}</p>
-            </div>
-            <p className="mt-0.5 text-sm">
-              Shipping and taxes are calculated at checkout
+          <div className="flex justify-between text-base font-medium">
+            <p>Subtotal:</p>
+            <p>
+              ${totalPrice && !isNaN(totalPrice) ? totalPrice.toFixed(2) : "0.00"}
             </p>
-            <div className="mt-6">
-              <Button onClick={handleCheckoutClick} className="w-full">
-                Checkout
-              </Button>
-            </div>
-            <div className="bg-yellow-500 text-black px-4 py-2 justify-center rounded-md hover:bg-yellow-600 transition duration-200">
-              <button
-                onClick={handleCartClick}
-                className="font-medium justify-center"
-              >
-                Continue Shopping
-              </button>
-            </div>
+          </div>
+          <p className="mt-0.5 text-sm">
+            Shipping and taxes are calculated at checkout
+          </p>
+
+          <div className="mt-6">
+            <Button onClick={handleCheckoutClick} className="w-full">
+              Checkout
+            </Button>
+          </div>
+          <div className="bg-yellow-500 text-black px-4 py-2 justify-center rounded-md hover:bg-yellow-600 transition duration-200">
+            <button
+              onClick={handleCartClick}
+              className="font-medium justify-center"
+            >
+              Continue Shopping
+            </button>
           </div>
         </div>
       </SheetContent>
