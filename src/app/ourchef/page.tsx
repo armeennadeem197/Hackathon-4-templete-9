@@ -4,10 +4,8 @@ import React from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoSearch } from 'react-icons/io5';
 import { PiUserBold } from 'react-icons/pi';
-import { HiOutlineShoppingBag } from 'react-icons/hi2';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { client } from '@/sanity/lib/client';
 import CartComponent from '@/components/layout/CartComponent';
+import sanityClient from '@/sanity/lib/client';
 
 type Chef = {
   _id: string;
@@ -26,8 +24,7 @@ async function getData() {
     description
   }`;
 
-  const data: Chef[] = await client.fetch(query);
-
+  const data: Chef[] = await sanityClient.fetch(query);
   return data;
 }
 
@@ -47,31 +44,16 @@ export default async function Newest() {
               <li><Link href="/ourchef">Chef</Link></li>
               <li><Link href="/aboutus">About</Link></li>
               <li><Link href="/Newest">Shop</Link></li>
-              <li><Link href="/sigin">Signin</Link></li>
+              <li><Link href="/signin">Signin</Link></li>
             </ul>
           </nav>
           <div className="flex gap-4">
             <h1><IoSearch className="text-white text-[24px] cursor-pointer" /></h1>
             <h1><Link href="/signup"><PiUserBold className="text-white text-[24px] cursor-pointer" /></Link></h1>
-           <CartComponent/>
+            <CartComponent />
           </div>
           <div className="lg:hidden block">
-            <Sheet>
-              <SheetTrigger>
-                <GiHamburgerMenu className="text-white text-[24px] cursor-pointer" />
-              </SheetTrigger>
-              <SheetContent>
-                <ul className="flex flex-col gap-[10px] font-medium text-[16px] text-black">
-                  <li><Link href="/">Home</Link></li>
-                  <li><Link href="/ourmenu">Menu</Link></li>
-                  <li><Link href="/blog">Blog</Link></li>
-                  <li><Link href="/ourchef">Chef</Link></li>
-                  <li><Link href="/aboutus">About</Link></li>
-                  <li><Link href="/Newest">Shop</Link></li>
-                  <li><Link href="/signin">Signin</Link></li>
-                </ul>
-              </SheetContent>
-            </Sheet>
+            <GiHamburgerMenu className="text-white text-[24px] cursor-pointer" />
           </div>
         </div>
       </header>
@@ -94,14 +76,14 @@ export default async function Newest() {
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8 mx-auto max-w-screen-lg">
           {data.map((chef) => (
             <div key={chef._id} className="group relative text-center">
-              <div className="p-4 w-full max-w-md mx-auto"> {/* Increased width of the box */}
-                <a className="block relative h-64 rounded overflow-hidden"> {/* Increased height */}
+              <div className="p-4 w-full max-w-md mx-auto">
+                <a className="block relative h-64 rounded overflow-hidden">
                   <Image
                     src={chef.imageUrl}
                     alt={`${chef.name} image`}
                     className="object-cover object-center w-full h-full block"
-                    width={200} // Larger image size
-                    height={200} // Larger image size
+                    width={200}
+                    height={200}
                   />
                 </a>
                 <div className="mt-4 flex justify-center flex-col items-center">
@@ -110,9 +92,7 @@ export default async function Newest() {
                       {chef.name}
                     </Link>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {chef.position}
-                  </p>
+                  <p className="mt-1 text-sm text-gray-500">{chef.position}</p>
                 </div>
               </div>
             </div>

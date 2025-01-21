@@ -1,5 +1,4 @@
 import { fullProduct } from "@/app/interface";
-import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
@@ -8,8 +7,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
 import AddToBag from "@/components/layout/AddToBag";
 import { Star } from "lucide-react";
-import CartComponent from "@/components//layout/CartComponent"; // Import the CartComponent
-import ImageGallery from "@/components/layout/ImageGallery"; // Import the ImageGallery component
+import CartComponent from "@/components/layout/CartComponent";
+import ImageGallery from "@/components/layout/ImageGallery";
+import sanityClient from "@/sanity/lib/client";
 
 async function getData(slug: string) {
   const query = `*[_type == "foodProduct" && slug.current < "${slug}"] [0]{
@@ -23,7 +23,7 @@ async function getData(slug: string) {
     createdAt
   }`;
 
-  const data = await client.fetch(query);
+  const data = await sanityClient.fetch(query);
   return data;
 }
 
@@ -35,6 +35,14 @@ export default async function ProductPage({
   params: { slug: string };
 }) {
   const data: fullProduct = await getData(params.slug);
+
+  // Log the data to inspect its structure
+  console.log("Fetched Product Data:", data);
+
+  // Add a check for the images field
+  const productImage = data?.images && Array.isArray(data.images) && data.images.length > 0
+    ? data.images[0]
+    : '/default-image.png'; // fallback image
 
   return (
     <div className="bg-white">
@@ -72,7 +80,7 @@ export default async function ProductPage({
               <PiUserBold className="text-white text-[24px] cursor-pointer" />
             </Link>
           </div>
-          <CartComponent /> {/* Use the CartComponent here */}
+          <CartComponent />
           <div className="lg:hidden block">
             <Sheet>
               <SheetTrigger>
@@ -122,23 +130,23 @@ export default async function ProductPage({
 
       <div className="mx-auto max-w-screen-xl md:px-8 mt-8">
         <div className="grid gap-8 md:grid-cols-2">
-          <ImageGallery images={data.images} />
+          <ImageGallery images={data?.images || []} />
           <div className="md:py-8">
             <div className="mb-2 md:mb-3">
-              <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl">{data.name}</h2>
+              <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl">{data?.name}</h2>
             </div>
-            <p className="mt-4 text-base text-gray-500 tracking-wide">{data.description}</p>
+            <p className="mt-4 text-base text-gray-500 tracking-wide">{data?.description}</p>
             <div className="mb-4 mt-2">
               <div className="flex items-end gap-2">
-                <span className="text-xl font-bold text-gray-800 md:text-2xl">${data.price}00</span>
-                <span className="mb-0.5 text-red-500 line-through">${data.price + 30}</span>
+                <span className="text-xl font-bold text-gray-800 md:text-2xl">${data?.price}00</span>
+                <span className="mb-0.5 text-red-500 line-through">${data?.price + 30}</span>
               </div>
               <div className="mb-6 flex items-center gap-3 md:mb-10 mt-4">
                 <div className="flex items-center">
                   {[...Array(5)].map((_, index) => (
                     <Star
                       key={index}
-                      className={`h-5 w-5 ${index < (data.rating || 45) ? "text-yellow-500" : "text-gray-300"}`}
+                      className={`h-5 w-5 ${index < (data?.rating || 45) ? "text-yellow-500" : "text-gray-300"}`}
                     />
                   ))}
                 </div>
@@ -150,14 +158,14 @@ export default async function ProductPage({
               <div>
                 <AddToBag
                   currency="USD"
-                  description={data.description}
-                  image={data.images[0]}
-                  name={data.name}
-                  price={data.price}
-                  key={data._id}
-                  price_id={data.price_id}
+                  description={data?.description}
+                  image={productImage}
+                  name={data?.name}
+                  price={data?.price}
+                  key={data?._id}
+                  price_id={data?.price_id}
                 />
-                </div>
+              </div>
             </div>
           </div>
         </div>

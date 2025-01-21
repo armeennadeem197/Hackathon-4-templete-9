@@ -1,62 +1,6 @@
-// import Link from "next/link";
-// import type { fullProduct } from "@/app/interface";
-// import Header from "@/components/layout/Header";
-// import { client } from "@/sanity/lib/client";
-// import ProductGrid from "@/components/layout/ProductGrid"; // Renamed for clarity.
 
-// async function getData() {
-//   const query = `*[_type == "foodProduct"] | order(createdAt desc)[0...12]{
-//     _id,
-//     name,
-//     slug,
-//     category,
-//     price,
-//     description,
-//     createdAt,
-//     "images": images[].asset->url,
-//     "slug": slug.current
-//   }`;
-
-//   const data: fullProduct[] = await client.fetch(query);
-//   return data;
-// }
-
-// export default async function Newest() {
-//   const data: fullProduct[] = await getData();
-
-//   return (
-//     <div>
-//       {/* Header */}
-//       <Header />
-
-//       {/* Banner Section */}
-//       <section
-//         className="bg-cover bg-center h-64 flex items-center justify-center"
-//         style={{ backgroundImage: "url('/allnav.png')" }}
-//       >
-//         <div className="text-center text-white">
-//           <h2 className="text-4xl font-bold">Newest Products</h2>
-//           <p className="pt-2">
-//             <Link href="/" className="text-yellow-400">
-//               Home
-//             </Link>{" "}
-//             › Newest
-//           </p>
-//         </div>
-//       </section>
-
-//       {/* Main Content */}
-//       <main className="container mx-auto px-4 py-8">
-//         <h2 className="text-3xl font-bold text-center mb-8">Our Latest Offerings</h2>
-//         {/* Product Grid */}
-//         <ProductGrid products={data} />
-//       </main>
-//     </div>
-//   );
-// }
 import Link from "next/link";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
 import { fullProduct } from "../interface";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
@@ -64,6 +8,7 @@ import { PiUserBold } from "react-icons/pi";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
 import CartComponent from "@/components/layout/CartComponent";
+import sanityClient from "@/sanity/lib/client";
 
 async function getData() {
   const query = `*[_type == "foodProduct"]{
@@ -74,7 +19,7 @@ async function getData() {
     "imageUrl": images[0].asset->url
   }`;
 
-  const data = await client.fetch(query);
+  const data = await sanityClient.fetch(query);
   return data;
 }
 

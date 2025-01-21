@@ -1,3 +1,4 @@
+import sanityClient from "@/sanity/lib/client";
 import bcrypt from "bcryptjs";
 import { createClient } from "next-sanity";
 import { NextResponse } from "next/server";
@@ -10,7 +11,7 @@ export async function POST(request: Request) {
     // Fetch the user from Sanity
     const query = `*[_type == "user" && email == $email][0]`;
     const client = createClient({ /* your client config here */ });
-    const user = await client.fetch(query, { email });
+    const user = await sanityClient.fetch(query, { email });
 
     if (!user) {
       return NextResponse.json(

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MdLockOutline } from "react-icons/md";
 import { SlEnvolope } from "react-icons/sl";
 import SignUpPage from "../signup/page";
+
 export default function SignInPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -145,14 +146,14 @@ export default function SignInPage() {
           </form>
           <div className="text-center mt-4">
             <p>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/signup" className="text-yellow-500">
                 Sign Up
               </Link>
             </p>
           </div>
         </div>
-        <SignUpPage/>
+        <SignUpPage />
       </section>
     </div>
   );

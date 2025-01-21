@@ -5,8 +5,8 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoSearch } from 'react-icons/io5';
 import { PiUserBold } from 'react-icons/pi';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { client } from '@/sanity/lib/client';
 import CartComponent from '@/components/layout/CartComponent';
+import sanityClient from '@/sanity/lib/client';
 
 type fullProduct = {
   _id: string;
@@ -34,7 +34,7 @@ async function getData() {
     }
   }`;
 
-  const data = await client.fetch(query);
+  const data = await sanityClient.fetch(query);
 
   return data;
 }
