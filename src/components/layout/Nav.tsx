@@ -46,7 +46,7 @@ const Nav = () => {
             <GiHamburgerMenu className="text-yellow-600 text-[34px] cursor-pointer" />
           </SheetTrigger>
           <SheetContent>
-            <ul className="flex flex-col gap-[10px] font-medium text-[16px] text-black">
+            <ul className="flex flex-col gap-[10px] font-medium text-[16px] text-white">
               <Link href={"/"}><li className='font-medium hover:text-white'>Home</li></Link>
               <Link href={"/ourmenu"}><li className='font-medium hover:text-white'>Menu</li></Link>
               <Link href={"/blog"}><li className='font-medium hover:text-white'>Blog</li></Link>
