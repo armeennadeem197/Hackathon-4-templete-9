@@ -47,13 +47,13 @@ const Nav = () => {
           </SheetTrigger>
           <SheetContent>
             <ul className="flex flex-col gap-[10px] font-medium text-[16px] text-white">
-              <Link href={"/"}><li className='font-medium hover:text-white'>Home</li></Link>
-              <Link href={"/ourmenu"}><li className='font-medium hover:text-white'>Menu</li></Link>
-              <Link href={"/blog"}><li className='font-medium hover:text-white'>Blog</li></Link>
-              <Link href={"/ourchef"}><li className='font-medium hover:text-white'>Chef</li></Link>
-              <Link href={"/aboutus"}><li className='font-medium hover:text-white'>About</li></Link>
-              <Link href={"/shop"}><li className='font-medium hover:text-white'>Shop</li></Link>
-              <Link href={"/signin"}><li className='font-medium hover:text-white'>Signin</li></Link>
+              <Link href={"/"}><li className='font-medium '>Home</li></Link>
+              <Link href={"/ourmenu"}><li className='font-medium'>Menu</li></Link>
+              <Link href={"/blog"}><li className='font-medium '>Blog</li></Link>
+              <Link href={"/ourchef"}><li className='font-medium '>Chef</li></Link>
+              <Link href={"/aboutus"}><li className='font-medium '>About</li></Link>
+              <Link href={"/shop"}><li className='font-medium '>Shop</li></Link>
+              <Link href={"/signin"}><li className='font-medium '>Signin</li></Link>
             </ul>
           </SheetContent>
         </Sheet>
