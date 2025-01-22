@@ -69,7 +69,7 @@ export default async function Newest() {
                 <GiHamburgerMenu className="text-white text-[24px] cursor-pointer" />
               </SheetTrigger>
               <SheetContent>
-                <ul className="flex flex-col gap-2 font-medium text-[16px] text-black">
+                <ul className="flex flex-col gap-2 font-medium text-[16px] text-white">
                   <li><Link href="/">Home</Link></li>
                   <li><Link href="/ourmenu">Menu</Link></li>
                   <li><Link href="/blog">Blog</Link></li>
